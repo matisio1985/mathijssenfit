@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+  <meta name="description" content="Bereken jouw trainingszones op basis van hartslag en leeftijd. Ideaal voor sporters.">
+  <meta name="keywords" content="hartslag, hartslagzones, training bpm">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hartslagzones</title>
+  <title>Hartslagzone Calculator | MathijssenFit</title>
+Hartslagzones</title>
   <meta name="google-adsense-account" content="ca-pub-3167065596755326">
   <style>
     body { font-family: 'Segoe UI', sans-serif; background:#f7f7f7; padding:2rem; }
   </style>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+</head>
+<body>
+<header style="background:#4da6ff; color:white; padding:20px; text-align:center; font-size:24px;">
+  <img src="logo.png" alt="Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
+  MathijssenFit – Tools & Productiviteit
+</header>
+
+<h2>Hartslagzone Calculator</h2>
+<p>Voer je leeftijd in:</p>
+<input type="number" id="leeftijd">
+<button onclick="berekenZones()">Bereken</button>
+<div id="zones"></div>
+<script>
+function berekenZones() {
+  const l = parseInt(document.getElementById("leeftijd").value);
+  if (!isNaN(l)) {
+    const max = 220 - l;
+    const z1 = Math.round(max * 0.5);
+    const z2 = Math.round(max * 0.6);
+    const z3 = Math.round(max * 0.7);
+    const z4 = Math.round(max * 0.8);
+    const z5 = Math.round(max * 0.9);
+    document.getElementById("zones").innerHTML =
+      "Zone 1: " + z1 + "-" + z2 + " bpm<br>" +
+      "Zone 2: " + z2 + "-" + z3 + " bpm<br>" +
+      "Zone 3: " + z3 + "-" + z4 + " bpm<br>" +
+      "Zone 4: " + z4 + "-" + z5 + " bpm<br>" +
+      "Zone 5: >" + z5 + " bpm";
+  }
+}
+</script>
+
+</body>
+</html>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5S20EKJG9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q5S20EKJG9');
+</script>
+E html>
+<html lang="nl">
+<head>
+  <meta name="description" content="Bereken jouw trainingszones op basis van hartslag en leeftijd. Ideaal voor sporters.">
+  <meta name="keywords" content="hartslag, hartslagzones, training bpm">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hartslagzone Calculator | MathijssenFit</title>
+Hartslagzones</title>
+  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f7f7f7; padding:2rem; }
+  </style>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 </head>
 <body>
 <header style="background:#4da6ff; color:white; padding:20px; text-align:center; font-size:24px;">

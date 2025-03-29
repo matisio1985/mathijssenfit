@@ -1,13 +1,98 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+  <meta name="description" content="Haal tekst uit je PDF-bestand zonder extra software.">
+  <meta name="keywords" content="pdf naar tekst, pdf converter">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pdfnaartekst</title>
+  <title>PDF naar Tekst Converter | MathijssenFit</title>
+Pdfnaartekst</title>
   <meta name="google-adsense-account" content="ca-pub-3167065596755326">
   <style>
     body { font-family: 'Segoe UI', sans-serif; background:#f7f7f7; padding:2rem; }
   </style>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+</head>
+<body>
+<header style="background:#4da6ff; color:white; padding:20px; text-align:center; font-size:24px;">
+  <img src="logo.png" alt="Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
+  MathijssenFit – Tools & Productiviteit
+</header>
+
+<h2>PDF naar Tekst Converter</h2>
+<p>Selecteer een PDF-bestand:</p>
+<input type="file" id="pdfInput" accept="application/pdf">
+<pre id="pdfText" style="white-space: pre-wrap; background:#fff; padding:1rem;"></pre>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+<script>
+document.getElementById('pdfInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function() {
+      const typedarray = new Uint8Array(this.result);
+      pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
+        let textPromises = [];
+        for (let i = 1; i <= pdf.numPages; i++) {
+          textPromises.push(pdf.getPage(i).then(p => p.getTextContent()));
+        }
+        Promise.all(textPromises).then(pages => {
+          let fullText = "";
+          pages.forEach(content => {
+            fullText += content.items.map(i => i.str).join(" ") + "\n\n";
+          });
+          document.getElementById("pdfText").textContent = fullText;
+        });
+      });
+    };
+    reader.readAsArrayBuffer(file);
+  }
+});
+</script>
+
+</body>
+</html>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q5S20EKJG9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q5S20EKJG9');
+</script>
+E html>
+<html lang="nl">
+<head>
+  <meta name="description" content="Haal tekst uit je PDF-bestand zonder extra software.">
+  <meta name="keywords" content="pdf naar tekst, pdf converter">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF naar Tekst Converter | MathijssenFit</title>
+Pdfnaartekst</title>
+  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f7f7f7; padding:2rem; }
+  </style>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 </head>
 <body>
 <header style="background:#4da6ff; color:white; padding:20px; text-align:center; font-size:24px;">
