@@ -83,21 +83,18 @@ a:hover {
 <body>
 
 <div style="text-align:right; margin-bottom:1rem;">
-  <select id="languageSelect" onchange="switchLang()" style="padding:6px;">
     <option value="nl">🇳🇱 Nederlands</option>
     <option value="en">🇬🇧 English</option>
     <option value="es">🇪🇸 Español</option>
   </select>
 </div>
 <script>
-function switchLang() {
-  const lang = document.getElementById("languageSelect").value;
   const path = window.location.pathname.replace(/\/[^\/]*$/, "/");
   window.location.href = path + "index-" + lang + ".html";
 }
 </script>
 
-<header><img src="logo.png" alt="Logo" style="height:40px;margin-right:10px;vertical-align:middle;">MathijssenFit – Tools & Productiviteit</header>
+<header style="background:#005f99;"><img src="logo.png" alt="Logo" style="height:40px;margin-right:10px;vertical-align:middle;">MathijssenFit – Tools & Productiviteit</header>
 <main>
   <section style="--border-color: var(--blue);">
     <h2 style="border-color: var(--blue);">Werk & Studie Tools</h2>
