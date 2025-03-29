@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="favicon.png">
   <title>Tijdconverter</title>
   <meta name="google-adsense-account" content="ca-pub-3167065596755326">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
@@ -41,6 +40,21 @@
   </style>
 </head>
 <body>
-<h2>Tijd Omrekenen</h2><p>Deze tool volgt nog...</p>
+
+<h2>Tijd Omrekenen</h2>
+<input type="number" id="minuten" placeholder="Aantal minuten">
+<button onclick="minnaaruren()">Zet om</button>
+<div id="tijdResult"></div>
+<script>
+function minnaaruren() {
+  const m = parseInt(document.getElementById("minuten").value);
+  if (!isNaN(m)) {
+    const uren = Math.floor(m / 60);
+    const rest = m % 60;
+    document.getElementById("tijdResult").textContent = m + " minuten = " + uren + " uur en " + rest + " minuten.";
+  }
+}
+</script>
+
 </body>
 </html>
