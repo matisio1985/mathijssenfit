@@ -1,65 +1,22 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <title>Kladblok</title>
-  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
-    crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <title>Online Kladblok</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      background-color: #f7f7f7;
-      color: #333;
-    }
-    h2 {
-      color: #9c27b0;
-      border-left: 6px solid #9c27b0;
-      padding-left: 1rem;
-    }
-    input, button, textarea {
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-      width: 100%;
-      max-width: 400px;
-    }
-    button {
-      background-color: #9c27b0;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #444;
-    }
+    body { font-family: 'Segoe UI', sans-serif; padding: 2rem; background: #f7f7f7; color: #333; }
+    textarea { width: 100%; max-width: 600px; height: 300px; padding: 10px; font-size: 16px; }
   </style>
 </head>
 <body>
-
 <header style="background:#4da6ff; color:white; padding:20px; text-align:center; font-size:24px;">
   <img src="logo.png" alt="Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
   MathijssenFit – Tools & Productiviteit
 </header>
-
-
-
-<div style="text-align:right; margin-bottom:1rem;">
-    <option value="nl"></option>
-    <option value="en"></option>
-    <option value="es"></option>
-  </select>
-</div>
+<h2>Online Kladblok</h2>
+<textarea oninput='localStorage.setItem("klad", this.value)'></textarea>
 <script>
-  const path = window.location.pathname.replace(/\/[^\/]*$/, "/");
-  window.location.href = path + "index-" + lang + ".html";
-}
+document.querySelector('textarea').value = localStorage.getItem("klad") || "";
 </script>
-
 </body>
 </html>
