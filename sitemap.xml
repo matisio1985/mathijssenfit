@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://matisio.nl/blog.html</loc></url>
+  <url><loc>https://matisio.nl/bmi.html</loc></url>
+  <url><loc>https://matisio.nl/btw.html</loc></url>
+  <url><loc>https://matisio.nl/calorie.html</loc></url>
+  <url><loc>https://matisio.nl/contact.html</loc></url>
+  <url><loc>https://matisio.nl/countdown.html</loc></url>
+  <url><loc>https://matisio.nl/datumverschil.html</loc></url>
+  <url><loc>https://matisio.nl/hartslagzones.html</loc></url>
+  <url><loc>https://matisio.nl/htmlcleaner.html</loc></url>
   <url><loc>https://matisio.nl/index.html</loc></url>
   <url><loc>https://matisio.nl/kladblok.html</loc></url>
-  <url><loc>https://matisio.nl/pdfnaartekst.html</loc></url>
-  <url><loc>https://matisio.nl/watercalculator.html</loc></url>
-  <url><loc>https://matisio.nl/hartslagzones.html</loc></url>
-  <url><loc>https://matisio.nl/slaapplanner.html</loc></url>
-  <url><loc>https://matisio.nl/htmlcleaner.html</loc></url>
+  <url><loc>https://matisio.nl/klok.html</loc></url>
+  <url><loc>https://matisio.nl/leeftijd.html</loc></url>
   <url><loc>https://matisio.nl/naamgenerator.html</loc></url>
+  <url><loc>https://matisio.nl/over.html</loc></url>
+  <url><loc>https://matisio.nl/pdfnaartekst.html</loc></url>
+  <url><loc>https://matisio.nl/pomodoro.html</loc></url>
+  <url><loc>https://matisio.nl/procent.html</loc></url>
+  <url><loc>https://matisio.nl/randomgetal.html</loc></url>
+  <url><loc>https://matisio.nl/slaapplanner.html</loc></url>
+  <url><loc>https://matisio.nl/stopwatch.html</loc></url>
+  <url><loc>https://matisio.nl/tekstteller.html</loc></url>
+  <url><loc>https://matisio.nl/tijdconverter.html</loc></url>
+  <url><loc>https://matisio.nl/watercalculator.html</loc></url>
 </urlset>
