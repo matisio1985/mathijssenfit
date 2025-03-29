@@ -7,7 +7,16 @@
   <title>MathijssenFit – Tools</title>
   <meta name="google-adsense-account" content="ca-pub-3167065596755326">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+<script>
+function switchLang() {
+  const lang = document.getElementById("languageSelect").value;
+  localStorage.setItem("lang", lang);
+  const path = window.location.pathname.replace(/\/[^\/]*$/, "/");
+  window.location.href = path + "index-" + lang + ".html";
+}
+</script>
+</script>
   <style>
 :root {
   --blue: #007acc;
@@ -95,6 +104,15 @@ function switchLang() {
   const path = window.location.pathname.replace(/\/[^\/]*$/, "/");
   window.location.href = path + "index-" + lang + ".html";
 }
+
+<script>
+function switchLang() {
+  const lang = document.getElementById("languageSelect").value;
+  localStorage.setItem("lang", lang);
+  const path = window.location.pathname.replace(/\/[^\/]*$/, "/");
+  window.location.href = path + "index-" + lang + ".html";
+}
+</script>
 </script>
 
 <header><img src="logo.png" alt="Logo" style="height:40px;margin-right:10px;vertical-align:middle;">MathijssenFit – Tools & Productiviteit</header>

@@ -41,6 +41,18 @@
 </head>
 <body>
 
+<script>
+(function() {
+  const lang = localStorage.getItem("lang");
+  const current = window.location.pathname;
+  if (lang && !current.includes(`-${lang}.html`)) {
+    const newPath = current.replace(/(\/[^\/]*)(\.html)/, `$1-${lang}$2`);
+    window.location.replace(newPath);
+  }
+})();
+</script>
+
+
 <h2>Welkom bij de MathijssenFit Blog</h2>
 <div>
   <button onclick="showLang('nl')">🇳🇱 Nederlands</button>
