@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <title>Stopwatch</title>
+  <title>Datumverschil</title>
   <meta name="google-adsense-account" content="ca-pub-3167065596755326">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
     crossorigin="anonymous"></script>
@@ -17,8 +16,8 @@
       color: #333;
     }
     h2 {
-      color: #007acc;
-      border-left: 6px solid #007acc;
+      color: #ff9800;
+      border-left: 6px solid #ff9800;
       padding-left: 1rem;
     }
     input, button, textarea {
@@ -31,7 +30,7 @@
       max-width: 400px;
     }
     button {
-      background-color: #007acc;
+      background-color: #ff9800;
       color: white;
       cursor: pointer;
     }
@@ -57,17 +56,22 @@ function switchLang() {
 }
 </script>
 
-<h2>Stopwatch</h2><div id='sw'>00:00:00</div>
-    <button onclick='start()'>Start</button> <button onclick='stop()'>Stop</button> <button onclick='reset()'>Reset</button>
-    <script>
-    let swTime=0, swInt;
-    function update(){let h=String(Math.floor(swTime/3600)).padStart(2,'0'),
-    m=String(Math.floor((swTime%3600)/60)).padStart(2,'0'),s=String(swTime%60).padStart(2,'0');
-    document.getElementById('sw').textContent=`${h}:${m}:${s}`; swTime++;}
-    function start(){if(!swInt)swInt=setInterval(update,1000);}
-    function stop(){clearInterval(swInt);swInt=null;}
-    function reset(){stop();swTime=0;update();}
-    update();
-    </script>
+
+<h2>Días entre fechas</h2>
+<p>Van: <input type="date" id="start"> Tot: <input type="date" id="eind"></p>
+<button onclick="berekenDagen()">Calcular</button>
+<div id="dagResult"></div>
+<script>
+function berekenDagen() {
+  const start = new Date(document.getElementById("start").value);
+  const eind = new Date(document.getElementById("eind").value);
+  if (start && eind) {
+    const ms = eind - start;
+    const dagen = Math.floor(ms / (1000 * 60 * 60 * 24));
+    document.getElementById("dagResult").textContent = "Aantal dagen: " + dagen;
+  }
+}
+</script>
+
 </body>
 </html>

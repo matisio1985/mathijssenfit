@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="favicon.png">
-  <title>Stopwatch</title>
+  <title>Contact</title>
   <meta name="google-adsense-account" content="ca-pub-3167065596755326">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
     crossorigin="anonymous"></script>
@@ -57,17 +57,15 @@ function switchLang() {
 }
 </script>
 
-<h2>Stopwatch</h2><div id='sw'>00:00:00</div>
-    <button onclick='start()'>Start</button> <button onclick='stop()'>Stop</button> <button onclick='reset()'>Reset</button>
-    <script>
-    let swTime=0, swInt;
-    function update(){let h=String(Math.floor(swTime/3600)).padStart(2,'0'),
-    m=String(Math.floor((swTime%3600)/60)).padStart(2,'0'),s=String(swTime%60).padStart(2,'0');
-    document.getElementById('sw').textContent=`${h}:${m}:${s}`; swTime++;}
-    function start(){if(!swInt)swInt=setInterval(update,1000);}
-    function stop(){clearInterval(swInt);swInt=null;}
-    function reset(){stop();swTime=0;update();}
-    update();
-    </script>
+
+<h2>Contact</h2>
+<p>Heb je vragen, feedback of suggesties voor nieuwe tools? Laat het me weten!</p>
+<form action="mailto:info@matisio.nl" method="post" enctype="text/plain">
+  <input type="text" name="naam" placeholder="Je naam" required>
+  <input type="email" name="email" placeholder="Je e-mailadres" required>
+  <textarea name="bericht" rows="6" placeholder="Je bericht..." required></textarea>
+  <button type="submit">Send</button>
+</form>
+
 </body>
 </html>

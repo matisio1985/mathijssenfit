@@ -42,6 +42,22 @@
 </head>
 <body>
 
+<div style="text-align:right; margin-bottom:1rem;">
+  <select id="languageSelect" onchange="switchLang()" style="padding:6px;">
+    <option value="nl">🇳🇱 Nederlands</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="es">🇪🇸 Español</option>
+  </select>
+</div>
+<script>
+function switchLang() {
+  const lang = document.getElementById("languageSelect").value;
+  const path = window.location.pathname.replace(/\/[^\/]*$/, "/");
+  window.location.href = path + "index-" + lang + ".html";
+}
+</script>
+
+
 <h2>Over deze site</h2>
 <p>MathijssenFit biedt gratis online tools om je productiviteit, gezondheid en dagelijkse taken te ondersteunen. 
 Van eenvoudige tijdtools tot handige rekenmodules – alles op één plek, zonder afleiding.</p>

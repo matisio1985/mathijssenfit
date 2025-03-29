@@ -41,6 +41,22 @@
   </style>
 </head>
 <body>
+
+<div style="text-align:right; margin-bottom:1rem;">
+  <select id="languageSelect" onchange="switchLang()" style="padding:6px;">
+    <option value="nl">🇳🇱 Nederlands</option>
+    <option value="en">🇬🇧 English</option>
+    <option value="es">🇪🇸 Español</option>
+  </select>
+</div>
+<script>
+function switchLang() {
+  const lang = document.getElementById("languageSelect").value;
+  const path = window.location.pathname.replace(/\/[^\/]*$/, "/");
+  window.location.href = path + "index-" + lang + ".html";
+}
+</script>
+
 <h2>Online Kladblok</h2><textarea rows='10' cols='50' oninput='localStorage.setItem("klad",this.value)'></textarea><script>document.querySelector('textarea').value=localStorage.getItem("klad")||'';</script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="favicon.png">
-  <title>Stopwatch</title>
+  <title>Countdown</title>
   <meta name="google-adsense-account" content="ca-pub-3167065596755326">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
     crossorigin="anonymous"></script>
@@ -57,17 +57,18 @@ function switchLang() {
 }
 </script>
 
-<h2>Stopwatch</h2><div id='sw'>00:00:00</div>
-    <button onclick='start()'>Start</button> <button onclick='stop()'>Stop</button> <button onclick='reset()'>Reset</button>
+<h2>Temporizador de cuenta regresiva</h2><input type='datetime-local' id='cdInput'>
+    <button onclick='startCD()'>Start</button><div id='cdResult'></div>
     <script>
-    let swTime=0, swInt;
-    function update(){let h=String(Math.floor(swTime/3600)).padStart(2,'0'),
-    m=String(Math.floor((swTime%3600)/60)).padStart(2,'0'),s=String(swTime%60).padStart(2,'0');
-    document.getElementById('sw').textContent=`${h}:${m}:${s}`; swTime++;}
-    function start(){if(!swInt)swInt=setInterval(update,1000);}
-    function stop(){clearInterval(swInt);swInt=null;}
-    function reset(){stop();swTime=0;update();}
-    update();
+    let cdInt;
+    function startCD(){clearInterval(cdInt);
+    let t=new Date(document.getElementById('cdInput').value);
+    cdInt=setInterval(()=>{let d=Math.floor((t-new Date())/1000);
+    if(d<0){clearInterval(cdInt);d=0;}
+    let h=String(Math.floor(d/3600)).padStart(2,'0'),
+    m=String(Math.floor((d%3600)/60)).padStart(2,'0'),
+    s=String(d%60).padStart(2,'0');
+    document.getElementById('cdResult').textContent=`${h}:${m}:${s}`;},1000);}
     </script>
 </body>
 </html>
