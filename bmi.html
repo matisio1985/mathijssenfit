@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>Bmi</title>
+  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
+    crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    h2 {
+      color: #28a745;
+      border-left: 6px solid #28a745;
+      padding-left: 1rem;
+    }
+    input, button, textarea {
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+<h2>BMI Calculator</h2><input id='gewicht' type='number' placeholder='Gewicht (kg)'>
+    <input id='lengte' type='number' placeholder='Lengte (cm)'><button onclick='bmi()'>Bereken</button>
+    <div id='bmiResult'></div><script>
+    function bmi(){let g=parseFloat(document.getElementById('gewicht').value),
+    l=parseFloat(document.getElementById('lengte').value)/100;
+    if(g&&l){let b=g/(l*l),r='';if(b<18.5)r='Ondergewicht';else if(b<25)r='Normaal';else if(b<30)r='Overgewicht';else r='Obesitas';
+    document.getElementById('bmiResult').textContent=`BMI: ${b.toFixed(1)} – ${r}`;}}
+    </script>
+</body>
+</html>

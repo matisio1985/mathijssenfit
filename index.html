@@ -1,189 +1,122 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
-     crossorigin="anonymous"></script>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TijdTools – MathijssenFit</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>MathijssenFit – Tools</title>
+  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3167065596755326"
     crossorigin="anonymous"></script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f9f9f9; }
-    header { background: #333; color: white; padding: 15px; text-align: center; font-size: 24px; }
-    nav { background: #444; display: flex; justify-content: center; flex-wrap: wrap; }
-    nav a {
-      color: white; text-decoration: none; padding: 12px 16px;
-      display: inline-block; transition: background 0.3s;
-    }
-    nav a:hover { background: #666; }
-    section { display: none; padding: 30px; }
-    section.active { display: block; }
-    .tool, .blog-post { margin-bottom: 30px; }
-    .tool-title { font-size: 22px; margin-bottom: 10px; }
-    .tool-output { font-size: 28px; margin-top: 10px; }
-    .blog-post h3 { margin-bottom: 5px; }
-    textarea { width: 100%; max-width: 500px; }
-  </style>
+:root {
+  --blue: #007acc;
+  --green: #28a745;
+  --orange: #ff9800;
+  --purple: #9c27b0;
+  --gray: #f5f5f5;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--gray);
+  color: #333;
+}
+
+header {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 6px solid;
+  padding-left: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+li {
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: transform 0.1s ease;
+}
+
+li:hover {
+  transform: translateY(-2px);
+}
+
+a {
+  text-decoration: none;
+  color: var(--blue);
+  font-weight: 600;
+}
+a:hover {
+  text-decoration: underline;
+}
+</style>
 </head>
 <body>
-
-<header>MathijssenFit – Tijdtools & Blog</header>
-
-<nav>
-  <a href="#" onclick="showSection('clock')">Digitale Klok</a>
-  <a href="#" onclick="showSection('stopwatch')">Stopwatch</a>
-  <a href="#" onclick="showSection('world')">Wereldklokken</a>
-  <a href="#" onclick="showSection('countdown')">Countdown</a>
-  <a href="#" onclick="showSection('bmi')">BMI Calculator</a>
-  <a href="#" onclick="showSection('tekst')">Tekstteller</a>
-  <a href="#" onclick="showSection('blog')">Blog</a>
-</nav>
-
-<section id="clock" class="active">
-  <div class="tool">
-    <div class="tool-title">Digitale Klok</div>
-    <div class="tool-output" id="digitalClock"></div>
-  </div>
-</section>
-
-<section id="stopwatch">
-  <div class="tool">
-    <div class="tool-title">Stopwatch</div>
-    <div class="tool-output" id="stopwatchDisplay">00:00:00</div>
-    <button onclick="startStopwatch()">Start</button>
-    <button onclick="stopStopwatch()">Stop</button>
-    <button onclick="resetStopwatch()">Reset</button>
-  </div>
-</section>
-
-<section id="world">
-  <div class="tool">
-    <div class="tool-title">Wereldklokken</div>
-    <div id="worldClocks"></div>
-  </div>
-</section>
-
-<section id="countdown">
-  <div class="tool">
-    <div class="tool-title">Countdown Timer</div>
-    <input type="datetime-local" id="countdownInput" />
-    <button onclick="startCountdown()">Start Countdown</button>
-    <div class="tool-output" id="countdownDisplay"></div>
-  </div>
-</section>
-
-<section id="bmi">
-  <div class="tool">
-    <div class="tool-title">BMI Calculator</div>
-    <input type="number" id="gewicht" placeholder="Gewicht (kg)" />
-    <input type="number" id="lengte" placeholder="Lengte (cm)" />
-    <button onclick="berekenBMI()">Bereken BMI</button>
-    <div class="tool-output" id="bmiResultaat"></div>
-  </div>
-</section>
-
-<section id="tekst">
-  <div class="tool">
-    <div class="tool-title">Tekstteller</div>
-    <textarea id="tekstInput" rows="6" placeholder="Typ hier je tekst..."></textarea>
-    <p>Aantal tekens: <span id="karakters">0</span></p>
-    <p>Aantal woorden: <span id="woorden">0</span></p>
-  </div>
-</section>
-
-<section id="blog">
-  <div class="blog-post">
-    <h3>Waarom een online klok handig is</h3>
-    <p>Een online klok helpt je focussen tijdens studie, werk of sport. Je hebt altijd zicht op de tijd.</p>
-  </div>
-  <div class="blog-post">
-    <h3>Productiever werken met een stopwatch</h3>
-    <p>Gebruik een stopwatch om je werktijd te structureren en taken sneller af te ronden.</p>
-  </div>
-</section>
-
-<script>
-  function showSection(id) {
-    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-  }
-
-  function updateClock() {
-    const now = new Date();
-    document.getElementById("digitalClock").textContent = now.toLocaleTimeString();
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  let swInterval, swTime = 0;
-  function updateStopwatch() {
-    const h = String(Math.floor(swTime / 3600)).padStart(2, '0');
-    const m = String(Math.floor((swTime % 3600) / 60)).padStart(2, '0');
-    const s = String(swTime % 60).padStart(2, '0');
-    document.getElementById("stopwatchDisplay").textContent = `${h}:${m}:${s}`;
-    swTime++;
-  }
-  function startStopwatch() { if (!swInterval) swInterval = setInterval(updateStopwatch, 1000); }
-  function stopStopwatch() { clearInterval(swInterval); swInterval = null; }
-  function resetStopwatch() { stopStopwatch(); swTime = 0; updateStopwatch(); }
-
-  const timezones = [
-    { city: "New York", tz: "America/New_York" },
-    { city: "London", tz: "Europe/London" },
-    { city: "Tokyo", tz: "Asia/Tokyo" }
-  ];
-  function updateWorldClocks() {
-    const container = document.getElementById("worldClocks");
-    container.innerHTML = "";
-    timezones.forEach(loc => {
-      const time = new Date().toLocaleTimeString("nl-NL", { timeZone: loc.tz });
-      container.innerHTML += `<p><strong>${loc.city}</strong>: ${time}</p>`;
-    });
-  }
-  setInterval(updateWorldClocks, 1000);
-  updateWorldClocks();
-
-  let countdownInterval;
-  function startCountdown() {
-    clearInterval(countdownInterval);
-    const target = new Date(document.getElementById("countdownInput").value);
-    countdownInterval = setInterval(() => {
-      const now = new Date();
-      const diff = Math.max(0, Math.floor((target - now) / 1000));
-      const h = String(Math.floor(diff / 3600)).padStart(2, '0');
-      const m = String(Math.floor((diff % 3600) / 60)).padStart(2, '0');
-      const s = String(diff % 60).padStart(2, '0');
-      document.getElementById("countdownDisplay").textContent = `${h}:${m}:${s}`;
-      if (diff === 0) clearInterval(countdownInterval);
-    }, 1000);
-  }
-
-  function berekenBMI() {
-    const gewicht = parseFloat(document.getElementById("gewicht").value);
-    const lengte = parseFloat(document.getElementById("lengte").value) / 100;
-    if (!gewicht || !lengte) {
-      document.getElementById("bmiResultaat").textContent = "Vul geldige getallen in.";
-      return;
-    }
-    const bmi = gewicht / (lengte * lengte);
-    let advies = "";
-    if (bmi < 18.5) advies = "Ondergewicht";
-    else if (bmi < 25) advies = "Gezond gewicht";
-    else if (bmi < 30) advies = "Overgewicht";
-    else advies = "Obesitas";
-    document.getElementById("bmiResultaat").textContent = `BMI: ${bmi.toFixed(1)} – ${advies}`;
-  }
-
-  const tekstInput = document.getElementById("tekstInput");
-  tekstInput?.addEventListener("input", () => {
-    const tekst = tekstInput.value;
-    document.getElementById("karakters").textContent = tekst.length;
-    document.getElementById("woorden").textContent = tekst.trim().split(/\s+/).filter(w => w).length;
-  });
-</script>
-
+<header><img src="logo.png" alt="Logo" style="height:40px;margin-right:10px;vertical-align:middle;">MathijssenFit – Tools & Productiviteit</header>
+<main>
+  <section style="--border-color: var(--blue);">
+    <h2 style="border-color: var(--blue);">Werk & Studie Tools</h2>
+    <ul>
+      <li><a href="klok.html">Digitale Klok</a></li>
+      <li><a href="stopwatch.html">Stopwatch</a></li>
+      <li><a href="countdown.html">Countdown Timer</a></li>
+      <li><a href="tekstteller.html">Tekstteller</a></li>
+      <li><a href="pomodoro.html">Pomodoro Timer</a></li>
+    </ul>
+  </section>
+  <section style="--border-color: var(--green);">
+    <h2 style="border-color: var(--green);">Gezondheid & Fitness Tools</h2>
+    <ul>
+      <li><a href="bmi.html">BMI Calculator</a></li>
+      <li><a href="calorie.html">Caloriebehoefte Berekenen</a></li>
+      <li><a href="leeftijd.html">Leeftijd Berekenen</a></li>
+    </ul>
+  </section>
+  <section style="--border-color: var(--orange);">
+    <h2 style="border-color: var(--orange);">Reken & Conversie Tools</h2>
+    <ul>
+      <li><a href="btw.html">BTW Calculator</a></li>
+      <li><a href="procent.html">Procent Rekenhulp</a></li>
+      <li><a href="tijdconverter.html">Tijd Omrekenen</a></li>
+      <li><a href="datumverschil.html">Dagen tussen datums</a></li>
+    </ul>
+  </section>
+  <section style="--border-color: var(--purple);">
+    <h2 style="border-color: var(--purple);">Overig</h2>
+    <ul>
+      <li><a href="kladblok.html">Online Kladblok</a></li>
+      <li><a href="randomgetal.html">Willekeurige Getallengenerator</a></li>
+    </ul>
+  </section>
+</main>
 </body>
 </html>
