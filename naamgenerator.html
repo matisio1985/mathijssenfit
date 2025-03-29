@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naamgenerator</title>
+  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f7f7f7; padding:2rem; }
+  </style>
+</head>
+<body>
+<header style="background:#4da6ff; color:white; padding:20px; text-align:center; font-size:24px;">
+  <img src="logo.png" alt="Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
+  MathijssenFit – Tools & Productiviteit
+</header>
+
+<h2>Willekeurige Naamgenerator</h2>
+<button onclick="genNaam()">Genereer Naam</button>
+<div id="naamResult" style="margin-top:1rem;"></div>
+<script>
+const namen = ["Luna", "Milo", "Nova", "Finn", "Sofie", "Noah", "Levi", "Emma", "Zara", "Ties"];
+function genNaam() {
+  const n = namen[Math.floor(Math.random() * namen.length)];
+  document.getElementById("naamResult").textContent = "Suggestie: " + n;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Htmlcleaner</title>
+  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f7f7f7; padding:2rem; }
+  </style>
+</head>
+<body>
+<header style="background:#4da6ff; color:white; padding:20px; text-align:center; font-size:24px;">
+  <img src="logo.png" alt="Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
+  MathijssenFit – Tools & Productiviteit
+</header>
+
+<h2>HTML Cleaner</h2>
+<p>Plak hier je HTML/Word tekst:</p>
+<textarea id="htmlInput" rows="10" cols="50"></textarea><br>
+<button onclick="cleanHTML()">Schoonmaken</button>
+<pre id="cleanOutput" style="white-space: pre-wrap;"></pre>
+<script>
+function cleanHTML() {
+  let html = document.getElementById("htmlInput").value;
+  html = html.replace(/<[^>]*>/g, ""); // verwijder HTML tags
+  document.getElementById("cleanOutput").textContent = html;
+}
+</script>
+
+</body>
+</html>

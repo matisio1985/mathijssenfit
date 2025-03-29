@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slaapplanner</title>
+  <meta name="google-adsense-account" content="ca-pub-3167065596755326">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f7f7f7; padding:2rem; }
+  </style>
+</head>
+<body>
+<header style="background:#4da6ff; color:white; padding:20px; text-align:center; font-size:24px;">
+  <img src="logo.png" alt="Logo" style="height:40px; vertical-align:middle; margin-right:10px;">
+  MathijssenFit – Tools & Productiviteit
+</header>
+
+<h2>Slaapcyclus Planner</h2>
+<p>Wanneer wil je wakker worden?</p>
+<input type="time" id="wakeTime">
+<button onclick="planSlaap()">Bereken Slaaptijd</button>
+<div id="sleepAdvice"></div>
+<script>
+function planSlaap() {
+  const input = document.getElementById("wakeTime").value;
+  if (input) {
+    const [h, m] = input.split(":").map(Number);
+    const wake = new Date();
+    wake.setHours(h, m, 0);
+    const results = [];
+    for (let c = 6; c >= 3; c--) {
+      const sleep = new Date(wake.getTime() - c * 90 * 60000 - 15 * 60000);
+      results.push(sleep.toTimeString().substring(0, 5));
+    }
+    document.getElementById("sleepAdvice").innerHTML =
+      "Ga slapen om (voor een goede cyclus):<br>" + results.join(" of ") + " uur.";
+  }
+}
+</script>
+
+</body>
+</html>
