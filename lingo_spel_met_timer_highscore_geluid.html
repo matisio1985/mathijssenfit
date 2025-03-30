@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Lingo Spel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #f2f2f2; padding: 20px; }
+    h1 { color: #007acc; }
+    .instructions { max-width: 500px; margin: 0 auto 20px; }
+    .grid { display: grid; grid-template-columns: repeat(5, 50px); gap: 5px; justify-content: center; margin-bottom: 10px; }
+    .cell {
+      width: 50px; height: 50px; border: 2px solid #ccc; background: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: bold; text-transform: uppercase;
+    }
+    .correct { background: #4CAF50; color: white; }
+    .present { background: #FFD700; color: black; }
+    .absent { background: #999; color: white; }
+    input[type="text"] {
+      padding: 10px; font-size: 18px; width: 130px; text-transform: lowercase;
+    }
+    button {
+      padding: 10px 20px; font-size: 16px; margin-left: 10px;
+      background: #007acc; color: white; border: none; border-radius: 5px;
+    }
+    #score { margin-top: 10px; font-weight: bold; }
+  </style>
+
+    <audio id="correctSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg" preload="auto"></audio>
+    <audio id="wrongSound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg" preload="auto"></audio>
+    </head>
+    
+<body>
+  <h1>Speel Lingo</h1>
+  <div class="instructions">
+    <p><strong>Instructies:</strong> Raad het geheime 5-letterwoord. Je hebt 6 pogingen.<br>
+    - <span class="cell correct">Groen</span>: juiste letter, juiste plek<br>
+    - <span class="cell present">Geel</span>: juiste letter, verkeerde plek<br>
+    - <span class="cell absent">Grijs</span>: letter zit niet in het woord</p>
+  </div>
+  <div id="grid-container">
+    <div id="grid0" class="grid"></div>
+    <div id="grid1" class="grid"></div>
+    <div id="grid2" class="grid"></div>
+    <div id="grid3" class="grid"></div>
+    <div id="grid4" class="grid"></div>
+    <div id="grid5" class="grid"></div>
+  </div>
+  <input type="text" id="guess" maxlength="5" placeholder="Voer 5-letterwoord in">
+  <button onclick="submitGuess()">Raden</button>
+  <p id="message"></p>
+  <p id="score"></p>
+<p id="timer">Tijd over: 60s</p>
+
+  <script>
+    const woorden = ['appel', 'arena', 'arend', 'armen', 'azuur', 'baken', 'baken', 'banen', 'baren', 'basis', 'baten', 'bedel', 'beeld', 'beest', 'beide', 'bekaf', 'bekas', 'belde', 'benen', 'bergt', 'beste', 'beten', 'beton', 'beurt', 'bezig', 'bezem', 'bijen', 'bingo', 'bloed', 'bocht', 'boeken', 'boete', 'boord', 'boven', 'braak', 'bruin', 'bouwen', 'broek', 'broer', 'buien', 'buren', 'cadeau', 'cijfer', 'circa', 'clown', 'codes', 'cokes', 'combi', 'corps', 'crisis', 'daden', 'daken', 'dalen', 'dames', 'dansen', 'datum', 'deden', 'delen', 'dicht', 'dienst', 'dikke', 'doden', 'doken', 'dolle', 'donor', 'draag', 'dreef', 'druif', 'druil', 'duels', 'duikt', 'duwen', 'dwars', 'eagle', 'einde', 'eigen', 'eikel', 'eiken', 'eiser', 'ellen', 'emmer', 'enkel', 'enten', 'erven', 'exact', 'falen', 'fases', 'feest', 'fiets', 'films', 'final', 'flora', 'foets', 'forum', 'frank', 'fusie', 'gaven', 'geest', 'geile', 'gekke', 'geldt', 'geurt', 'gidsen', 'glets', 'glimt', 'goede', 'gooit', 'graaf', 'grafen', 'grapp', 'groen', 'groot', 'gruis', 'halen', 'hamer', 'haren', 'hazes', 'heeft', 'hefde', 'heien', 'hemel', 'hoger', 'hoofd', 'hoofd', 'hoopt', 'hopen', 'hotel', 'huizen', 'ijver', 'ikjes', 'indie', 'inkle', 'intel', 'inval', 'jacht', 'jaren', 'joker', 'jonge', 'juist', 'kaars', 'kamer', 'kanen', 'kapen', 'kassa', 'kast', 'kater', 'kazen', 'kegel', 'keuze', 'kleur', 'klein', 'klikt', 'klimt', 'klopt', 'koers', 'koken', 'koker', 'komen', 'koort', 'koren', 'koud', 'kraak', 'kruid', 'kroon', 'kudde', 'kuurt', 'laadt', 'lagen', 'laken', 'lamme', 'lente', 'letter', 'licht', 'lijst', 'linde', 'lopen', 'macht', 'makers', 'maten', 'meest', 'meter', 'mogen', 'moest', 'molen', 'muren', 'nacht', 'naden', 'nafta', 'namen', 'neven', 'nezen', 'nieuw', 'noten', 'noten', 'nozem', 'obers', 'offers', 'ohnee', 'olien', 'omdat', 'onder', 'ooiev', 'oorde', 'open', 'optie', 'orden', 'padel', 'paden', 'palen', 'passen', 'pekel', 'pelik', 'penen', 'plank', 'plein', 'plukt', 'poets', 'polis', 'popul', 'praat', 'prijs', 'proef', 'pruts', 'radio', 'raken', 'raken', 'reden', 'regen', 'reken', 'relax', 'remix', 'rennen', 'repen', 'rente', 'rijen', 'rijst', 'roest', 'roken', 'roken', 'romig', 'ruikt', 'ruime', 'rugby', 'ruzie', 'samen', 'scher', 'scoor', 'score', 'secon', 'serie', 'slang', 'slank', 'sluit', 'smaak', 'snoep', 'spits', 'sport', 'spuit', 'staat', 'stelt', 'stort', 'storm', 'strand', 'strak', 'struik', 'stude', 'stuur', 'sushi', 'tafel', 'takke', 'tekst', 'tempo', 'tenen', 'terug', 'tijdt', 'tikken', 'tiles', 'titel', 'toets', 'tonen', 'toont', 'traan', 'trapt', 'trend', 'trouw', 'truck', 'tulpen', 'twees', 'uitleg', 'vakje', 'vallen', 'vaste', 'vegen', 'velen', 'venen', 'veren', 'verre', 'verso', 'video', 'vindt', 'vlees', 'vogel', 'voldo', 'vormt', 'vracht', 'vraag', 'vrouw', 'vulpen', 'wacht', 'wagen', 'water', 'weken', 'wens', 'werken', 'wezen', 'wilde', 'winna', 'wonin', 'wraak', 'wrede', 'zaagt', 'zaken', 'zaten', 'zomer', 'zoeken', 'zonde', 'zonen', 'zwaar', 'zwemt'];
+    const geheim = woorden[Math.floor(Math.random() * woorden.length)];
+    
+    let beurt = 0;
+    let score = 0;
+    let highscore = localStorage.getItem('lingoHighScore') || 0;
+    let tijdOver = 60;
+    let timer;
+    document.getElementById("score").innerText = "Score: 0 | Highscore: " + highscore;
+    timer = setInterval(() => {
+      tijdOver--;
+      document.getElementById("timer").innerText = "Tijd over: " + tijdOver + "s";
+      if (tijdOver <= 0) {
+        clearInterval(timer);
+        document.getElementById("message").innerText = "Tijd is op! Het woord was: " + geheim;
+        document.getElementById("wrongSound").play();
+    disableInput();
+      }
+    }, 1000);
+    
+    let score = 0;
+
+    function submitGuess() {
+      const input = document.getElementById("guess");
+      const gok = input.value.toLowerCase();
+      if (gok.length !== 5 || !woorden.includes(gok)) {
+        document.getElementById("message").innerText = "Geef een geldig 5-letterwoord.";
+        return;
+      }
+      const grid = document.getElementById("grid" + beurt);
+      grid.innerHTML = "";
+      for (let i = 0; i < 5; i++) {
+        const letter = document.createElement("div");
+        letter.classList.add("cell");
+        letter.textContent = gok[i];
+        if (gok[i] === geheim[i]) {
+          letter.classList.add("correct");
+        } else if (geheim.includes(gok[i])) {
+          letter.classList.add("present");
+        } else {
+          letter.classList.add("absent");
+        }
+        grid.appendChild(letter);
+      }
+
+      if (gok === geheim) {
+        
+    document.getElementById("message").innerText = "Gefeliciteerd! Het woord was juist.";
+    document.getElementById("correctSound").play();
+    score += (6 - beurt) * 10 + tijdOver;
+    document.getElementById("score").innerText = "Score: " + score + " | Highscore: " + highscore;
+    if (score > highscore) {
+      localStorage.setItem('lingoHighScore', score);
+      document.getElementById("score").innerText += "  (Nieuw record!)";
+    }
+    
+        score += (6 - beurt) * 10;
+        document.getElementById("score").innerText = "Score: " + score;
+        document.getElementById("wrongSound").play();
+    disableInput();
+      } else if (beurt >= 5) {
+        document.getElementById("message").innerText = "Helaas! Het woord was: " + geheim;
+        document.getElementById("wrongSound").play();
+    disableInput();
+      } else {
+        beurt++;
+        input.value = "";
+        document.getElementById("message").innerText = "";
+      }
+    }
+
+    function disableInput() {
+      document.getElementById("guess").disabled = true;
+      document.querySelector("button").disabled = true;
+    }
+  </script>
+</body>
+</html>

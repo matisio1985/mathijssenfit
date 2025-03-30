@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Raad het Getal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; padding: 40px; }
+    h1 { color: #333; }
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 100px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Raad het Getal</h1>
+  <p>Ik denk aan een getal tussen 1 en 100. Kun jij het raden?</p>
+  <input type="number" id="guess" placeholder="1-100">
+  <button onclick="checkGuess()">Raden</button>
+  <p id="result"></p>
+
+  <script>
+    const secretNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById("guess").value);
+      attempts++;
+      const result = document.getElementById("result");
+      if (isNaN(guess) || guess < 1 || guess > 100) {
+        result.textContent = "Vul een geldig getal in tussen 1 en 100.";
+      } else if (guess < secretNumber) {
+        result.textContent = "Hoger!";
+      } else if (guess > secretNumber) {
+        result.textContent = "Lager!";
+      } else {
+        result.textContent = `Goed gedaan! Je hebt het getal ${secretNumber} geraden in ${attempts} pogingen.`;
+        document.querySelector("button").disabled = true;
+        document.getElementById("guess").disabled = true;
+      }
+    }
+  </script>
+</body>
+</html>
